@@ -1,27 +1,101 @@
-.example {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-    'Open Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.5;
-  background-color: #fff;
-  color: #424242;
-  max-width: 960px;
-  padding: 16px;
+#list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
-.example code {
-  font-family: monospace;
-  font-size: 16px;
-  font-weight: 700;
-  background-color: #009688;
+.custom-btn {
+  margin-left: auto;
+  margin-right: auto;
+  /* display: flex; */
+  /* justify-content: center; */
+  display: block;
+  margin-top: 20px;
+  width: 130px;
+  height: 40px;
   color: #fff;
-  padding: 2px 6px;
-  border-radius: 2px;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
 }
 
-.example .background {
-  height: 240px;
-  // Путь к изображениям из SASS-файла всегда такой, как из папки css
-  background-image: url('../images/demo.jpg');
-  background-size: cover;
-  background-position: center;
+.load-more {
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  background: rgb(109, 69, 99);
+  background: linear-gradient(0deg, rgb(121, 150, 230) 0%, rgb(49, 37, 184) 100%);
+}
+.load-more:hover {
+  color: #0b8080;
+  background: transparent;
+  box-shadow: none;
+}
+.load-more:before,
+.load-more:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #054242;
+  box-shadow: -1px -1px 5px 0px #fff, 7px 7px 20px 0px rgba(235, 41, 67, 0.2),
+    4px 4px 5px 0px rgba(211, 19, 19, 0.133);
+  transition: 400ms ease all;
+}
+.load-more:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.load-more:hover:before,
+.load-more:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+.search-form {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  margin-bottom: 24px;
+}
+.is-hidden {
+  display: none;
+}
+.btn {
+  display: block;
+
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.btn-primary {
+  color: #fff;
+
+  border: none;
+  margin-left: 10px;
+  background: linear-gradient(0deg, rgb(121, 150, 230) 0%, rgb(49, 37, 184) 100%);
 }

@@ -1,33 +1,11 @@
-<article class="example">
-  <h1>HTML-фрагменты</h1>
-
-  <!-- Путь к изображениям из HTML-фрагмента такой, как из файла index.html -->
-  <img src="images/demo.jpg" alt="" width="320" />
-  <p>
-    Плагин
-    <a
-      href="https://github.com/posthtml/posthtml-include"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      posthtml-include
-    </a>
-    позволяет добавлять в HTML-файлы страниц код из других HTML-файлов (фрагментов). Фрагменты
-    хранятся в папке
-    <code>src/partials</code>. Добавление происходит при компиляции файлов страниц, например
-    <code>index.html</code>.
-  </p>
-
-  <p>
-    Этот файл <code>example.html</code> &mdash; пример такого фрагмента, с разметкой определённой
-    части главной страницы. Это очень удобно при командной разработке на студенческих проектах,
-    когда в одном HTML-файле пишет несколько человек сразу.
-  </p>
-
-  <p>
-    Синтаксис добавление фрагмента в главный файл:
-    <code> &lt;include src="./partials/имя-файла.html"&gt;&lt;/include&gt; </code>
-  </p>
-
-  <div class="background"></div>
-</article>
+<!-- Создает DOM-элемент следующей структуры. Можно использовать шаблонизацию. -->
+<form class="search-form" id="search-form">
+  <input type="text" name="query" autocomplete="off" class="btn" placeholder="Search images..." />
+  <button type="submit" class="btn btn-primary mb-2">Find</button>
+</form>
+<button class="custom-btn load-more is-hidden" id="loadMore">get more results</button>
+<!-- Галерея изображений
+Создает DOM-элемент следующей структуры -->
+<ul class="gallery">
+  <!-- Список <li> с карточками изображений -->
+</ul>
