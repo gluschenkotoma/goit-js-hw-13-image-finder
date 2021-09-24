@@ -1,18 +1,56 @@
-//   Для HTTP-запросов используй публичный Pixabay API. Зарегистрируйся и получи ключ.
-const API_KEY = `22755596-bd5bc4dc11dbf7c870dedd292`;
+const debounce = require('lodash.debounce');
 
-const BASE_URL = `https://pixabay.com/api/`;
-let searchQuery = ``;
+import card from '../templates/card.hbs';
+import gallery from '../templates/gallery.hbs';
 
-// URL-строка запроса:
-// https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=что_искать&page=номер_страницы&per_page=12&key=твой_ключ
+const searchForm = document.querySelector('#search-form');
+const divMark = document.querySelector('.mark');
+const apiKey = '22755596-bd5bc4dc11dbf7c870dedd292';
+const firstPage = 1;
+let currentNextPage = 1;
+let searchWords;
 
-let url = `${BASE_URL}?image_type=photo&orientation=horizontal&q=${searchQuery}&page=1&per_page=12&key=${API_KEY}`;
-
-fetch(url)
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
+searchForm.addEventListener('submit', event => {
+  event.preventDefault();
+  divMark.innerHTML = '';
+  searchWords = searchForm.elements.query.value;
+  const title = { searchWords };
+  const galleryMarkup = gallery(title);
+  divMark.insertAdjacentHTML('beforeend', galleryMarkup);
+  const btn = document.querySelector('.btn-load-more');
+  btn.addEventListener('click', event => {
+    loadMoreFn(event, currentNextPage);
   });
+  createFirstPage(searchWords);
+  searchForm.reset();
+});
+
+const createFirstPage = words => {
+  searchImgFn(words, firstPage, apiKey);
+};
+
+function loadMoreFn(event, page) {
+  console.log(`click`, event);
+  searchImgFn(searchWords, page, apiKey);
+  currentNextPage = page + 1;
+  console.log(currentNextPage);
+}
+
+async function searchImgFn(words, page, key) {
+  await fetch(
+    `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${words}&page=${page}&per_page=12&key=${key}`,
+  )
+    .then(response => response)
+    .then(data => data.json())
+    .then(arr => {
+      let resultArray;
+      resultArray = arr.hits;
+      const nextPageMarkup = card(resultArray);
+      const ulRef = document.querySelector('.gallery');
+      ulRef.insertAdjacentHTML('beforeend', nextPageMarkup);
+    });
+  window.scrollTo({
+    top: document.documentElement.offsetHeight,
+    behavior: 'smooth',
+  });
+}
